@@ -8,3 +8,5 @@
 	> npm install
 	> npm start
 ```
+
+Redux promise WIP.  cors issue?
