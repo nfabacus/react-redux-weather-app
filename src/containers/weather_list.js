@@ -4,11 +4,8 @@ import Chart from '../components/chart';
 import GoogleMap from '../components/google_map';
 
 class WeatherList extends Component {
-  renderWeather(cityData, index){
-    console.log("cityData", cityData);
-    if (typeof cityData === "undefined") {
-    return;
-    }
+  renderWeather(cityData){
+    let key = Math.random();
 
     const name = cityData.city.name;
     const temps = cityData.list.map(weather=>weather.main.temp);
@@ -17,7 +14,7 @@ class WeatherList extends Component {
     const { lon, lat } = cityData.city.coord;
 
     return (
-      <tr key={index}>
+      <tr key={key}>
         <td><GoogleMap lat={lat} lon={lon} /></td>
         <td><Chart data={temps} color="orange" units="K" /></td>
         <td><Chart data={pressures} color="blue" units="hPa" /></td>
@@ -45,6 +42,10 @@ class WeatherList extends Component {
   }
 }
 
+// function mapStateToProps(state) {
+//   return { weather: state.weather };
+// }
+// we can call state.weather because we hooked it up in reducers/index.js.
 function mapStateToProps({ weather }) {
   return { weather };
 }
